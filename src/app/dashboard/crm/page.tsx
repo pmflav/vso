@@ -40,8 +40,8 @@ export default function CRMPage() {
         <div className="space-y-8 h-full flex flex-col">
             <header className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900">CRM & Deals</h1>
-                    <p className="text-slate-500">Manage your pipeline.</p>
+                    <h1 className="text-3xl font-bold text-slate-900">Stakeholder vSO</h1>
+                    <p className="text-slate-500">Manage deals, stakeholders, and government relations.</p>
                 </div>
                 <div className="flex gap-4">
                     <div className="flex bg-white p-1 rounded-lg border border-slate-200 shadow-sm">

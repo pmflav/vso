@@ -9,8 +9,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "OzCore vOS | Sovereign Business OS",
-  description: "The Vertical Operating System for Australian Business. CRM, Compliance, Grants, and Ops in one sovereign platform.",
+  title: "CoreVantz Solutions | Australian vSO",
+  description: "Your Virtual Sovereign Officer. Better than a CSM. The intelligent, sovereign partner for Australian small businesses.",
 };
 
 export default function RootLayout({
@@ -19,10 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${outfit.variable} antialiased bg-slate-950 text-slate-50 font-sans`}
+        className={`${outfit.variable} antialiased bg-slate-50 text-slate-900 font-sans`}
       >
         {children}
       </body>

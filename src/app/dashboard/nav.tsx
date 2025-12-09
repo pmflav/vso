@@ -32,10 +32,10 @@ export default function DashboardNav() {
     return (
         <nav className="w-64 bg-white border-r border-slate-200 p-4 flex flex-col gap-2 shrink-0 h-screen sticky top-0">
             <div className="mb-6 px-4">
-                <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 text-transparent bg-clip-text">
-                    OzCore vOS
+                <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 text-transparent bg-clip-text">
+                    CoreVantz
                 </div>
-                <p className="text-xs text-slate-500">Sovereign Business OS</p>
+                <p className="text-xs text-slate-500">Intelligent vSO</p>
             </div>
 
             <div className="flex-1 flex flex-col gap-1">
@@ -46,8 +46,8 @@ export default function DashboardNav() {
                             key={link.href}
                             href={link.href}
                             className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${isActive
-                                    ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm'
-                                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                                ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                                 }`}
                         >
                             <span>{link.icon}</span>
@@ -61,8 +61,8 @@ export default function DashboardNav() {
                 <Link
                     href="/dashboard/profile"
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${pathname === '/dashboard/profile'
-                            ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                        ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                         }`}
                 >
                     <span>👤</span>
