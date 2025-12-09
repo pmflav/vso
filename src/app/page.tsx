@@ -1,12 +1,52 @@
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  let role = 'user';
+  if (user) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+    role = profile?.role || 'user';
+  }
+
   return (
     <main className="min-h-screen relative overflow-hidden flex flex-col items-center justify-center p-6">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-emerald-600/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+      </div>
+
+      {/* Top Right Login/Dashboard Status */}
+      <div className="absolute top-6 right-6 z-50">
+        {user ? (
+          <div className="flex items-center gap-4">
+            {role === 'admin' && (
+              <Link href="/admin">
+                <button className="px-4 py-2 rounded-lg bg-red-900/30 hover:bg-red-900/50 text-red-500 font-medium border border-red-900/50 transition-all flex items-center gap-2">
+                  <span>🛡️</span> Admin Portal
+                </button>
+              </Link>
+            )}
+            <Link href="/dashboard">
+              <button className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium border border-slate-700 transition-all">
+                Go to Dashboard &rarr;
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <Link href="/login">
+            <button className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium border border-slate-800 transition-all">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
 
       <div className="max-w-4xl w-full text-center space-y-8 z-10">
@@ -24,9 +64,19 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-8">
-          <button className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all hover:scale-105 shadow-lg shadow-blue-900/20">
-            Join the Waitlist
-          </button>
+          {user ? (
+            <Link href="/dashboard">
+              <button className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all hover:scale-105 shadow-lg shadow-blue-900/20">
+                Open Dashboard
+              </button>
+            </Link>
+          ) : (
+            <Link href="/login">
+              <button className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all hover:scale-105 shadow-lg shadow-blue-900/20">
+                Get Started
+              </button>
+            </Link>
+          )}
           <button className="px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium border border-slate-800 transition-all">
             See How It Works
           </button>

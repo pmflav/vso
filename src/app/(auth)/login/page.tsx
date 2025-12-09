@@ -1,7 +1,8 @@
 'use client'
 
 import { createClient } from '@/lib/supabase/client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
     const [email, setEmail] = useState('')
@@ -9,18 +10,36 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const supabase = createClient()
+    const router = useRouter()
+
+    useEffect(() => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Auth state change:', event)
+            if (event === 'SIGNED_IN' && session) {
+                console.log('Session confirmed. Redirecting...')
+                router.refresh()
+                router.replace('/dashboard')
+            }
+        })
+        return () => subscription.unsubscribe()
+    }, [router, supabase])
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
         setError(null)
+        console.log('Attempting login for:', email)
         const { error } = await supabase.auth.signInWithPassword({
             email,
             password,
         })
-        if (error) setError(error.message)
-        else window.location.href = '/' // Refresh to trigger middleware
-        setLoading(false)
+
+        if (error) {
+            console.error('Login error:', error)
+            setError(error.message)
+            setLoading(false)
+        }
+        // Success handled by useEffect
     }
 
     const handleSignup = async () => {
