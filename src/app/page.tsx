@@ -176,14 +176,6 @@ export default async function LandingPage() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-semibold uppercase tracking-wide">
-              Security First
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight">Australian Data Sovereignty Guaranteed.</h2>
-            <p className="text-slate-400 text-lg">
-              We don't just host in Australia; we are Australian. Your data never leaves our sovereign shores, ensuring full compliance with national privacy principles.
-            </p>
-
             <div className="grid grid-cols-2 gap-6 pt-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-xl border border-slate-700">🔒</div>
