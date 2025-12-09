@@ -57,15 +57,15 @@ export default function WageChatPage() {
     }
 
     return (
-        <div className="flex flex-col h-[calc(100vh-64px)] md:h-screen bg-slate-950">
+        <div className="flex flex-col h-[calc(100vh-64px)] md:h-screen bg-slate-50">
             {/* Header */}
-            <header className="px-6 py-4 border-b border-slate-800 bg-slate-900/50 backdrop-blur flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-xl">
+            <header className="px-6 py-4 border-b border-slate-200 bg-white/80 backdrop-blur flex items-center gap-3 shadow-sm sticky top-0 z-10">
+                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
                     🤖
                 </div>
                 <div>
-                    <h1 className="text-lg font-bold text-white">Wage & Award Chat</h1>
-                    <p className="text-xs text-slate-400">Powered by Fair Work data (v2.1)</p>
+                    <h1 className="text-lg font-bold text-slate-900">Wage & Award Chat</h1>
+                    <p className="text-xs text-slate-500">Powered by Fair Work data (v2.1)</p>
                 </div>
             </header>
 
@@ -77,11 +77,11 @@ export default function WageChatPage() {
                         className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                         <div className={`max-w-[80%] md:max-w-[60%] rounded-2xl p-4 shadow-sm ${msg.role === 'user'
-                                ? 'bg-blue-600 text-white rounded-br-none'
-                                : 'bg-slate-800 border border-slate-700 text-slate-200 rounded-bl-none'
+                            ? 'bg-blue-600 text-white rounded-br-none'
+                            : 'bg-white border border-slate-200 text-slate-800 rounded-bl-none'
                             }`}>
                             <p className="whitespace-pre-wrap text-sm leading-relaxed">{msg.content}</p>
-                            <div className={`text-[10px] mt-2 opacity-50 ${msg.role === 'user' ? 'text-blue-100' : 'text-slate-500'}`}>
+                            <div className={`text-[10px] mt-2 opacity-70 ${msg.role === 'user' ? 'text-blue-100' : 'text-slate-400'}`}>
                                 {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </div>
                         </div>
@@ -90,34 +90,34 @@ export default function WageChatPage() {
 
                 {isTyping && (
                     <div className="flex justify-start animate-pulse">
-                        <div className="bg-slate-800 border border-slate-700 rounded-2xl rounded-bl-none p-4 flex items-center gap-1">
-                            <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                        <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-none p-4 flex items-center gap-1 shadow-sm">
+                            <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                            <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                            <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                         </div>
                     </div>
                 )}
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-slate-900 border-t border-slate-800">
+            <div className="p-4 bg-white border-t border-slate-200">
                 <form onSubmit={handleSend} className="max-w-4xl mx-auto relative flex gap-2">
                     <input
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Ask about award rates, penalties, or leave..."
-                        className="flex-1 bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors placeholder:text-slate-600"
+                        className="flex-1 bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400"
                     />
                     <button
                         type="submit"
                         disabled={!input.trim() || isTyping}
-                        className="bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 rounded-xl font-medium transition-colors flex items-center"
+                        className="bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 rounded-xl font-medium transition-colors flex items-center shadow-sm"
                     >
                         Send
                     </button>
                 </form>
-                <p className="text-center text-[10px] text-slate-600 mt-2">
+                <p className="text-center text-[10px] text-slate-400 mt-2">
                     AI can make mistakes. Always verify wage rates with the Fair Work Ombudsman.
                 </p>
             </div>

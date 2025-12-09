@@ -45,13 +45,13 @@ export default function ComplianceCard({ org }: { org: any }) {
     const score = optimisticOrg.compliance_score || 0
 
     return (
-        <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl space-y-6 relative overflow-hidden group">
+        <div className="p-6 bg-white border border-slate-200 rounded-xl space-y-6 relative overflow-hidden group shadow-sm">
             {/* Background Glow Effect */}
-            <div className={`absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 transition-opacity duration-1000 ${isVerified ? 'opacity-100' : 'opacity-0'}`} />
+            <div className={`absolute top-0 right-0 w-64 h-64 bg-emerald-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 transition-opacity duration-1000 ${isVerified ? 'opacity-100' : 'opacity-0'}`} />
 
-            <h3 className="text-lg font-semibold text-white flex items-center justify-between relative z-10">
+            <h3 className="text-lg font-semibold text-slate-900 flex items-center justify-between relative z-10">
                 <span className="flex items-center gap-2">🛡️ Compliance Status</span>
-                {score > 0 && <span className="text-emerald-400 font-mono text-sm">{score}% Score</span>}
+                {score > 0 && <span className="text-emerald-600 font-mono text-sm">{score}% Score</span>}
             </h3>
 
             <div className="space-y-4 relative z-10">
@@ -59,20 +59,20 @@ export default function ComplianceCard({ org }: { org: any }) {
                 <StatusItem label="Director ID" status={isVerified ? "Verified" : "Pending"} isGood={isVerified} />
                 <StatusItem label="BAS Lodgement" status={isVerified ? "Up to date" : "Unknown"} isGood={isVerified} />
 
-                <div className="pt-2 border-t border-slate-800/50 flex justify-between items-center text-xs text-slate-500">
+                <div className="pt-2 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
                     <span>Last Check:</span>
-                    <span className="font-mono text-slate-400">{lastChecked}</span>
+                    <span className="font-mono text-slate-600">{lastChecked}</span>
                 </div>
             </div>
 
             <button
                 onClick={runCheck}
                 disabled={loading}
-                className="w-full mt-4 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300 rounded-lg text-sm font-medium transition-all border border-slate-700 relative z-10 flex items-center justify-center gap-2"
+                className="w-full mt-4 py-3 bg-slate-900 hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg text-sm font-medium transition-all shadow-sm relative z-10 flex items-center justify-center gap-2"
             >
                 {loading ? (
                     <>
-                        <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-white/50 border-t-white rounded-full animate-spin" />
                         Running Analysis...
                     </>
                 ) : (
@@ -85,9 +85,9 @@ export default function ComplianceCard({ org }: { org: any }) {
 
 function StatusItem({ label, status, isGood }: { label: string, status: string, isGood: boolean }) {
     return (
-        <div className="flex items-center justify-between p-3 bg-slate-950/50 rounded-lg border border-slate-800/50">
-            <span className="text-sm text-slate-300">{label}</span>
-            <span className={`text-sm font-medium transition-colors duration-500 ${isGood ? 'text-emerald-400' : 'text-amber-400'}`}>
+        <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <span className="text-sm text-slate-600">{label}</span>
+            <span className={`text-sm font-medium transition-colors duration-500 ${isGood ? 'text-emerald-600' : 'text-amber-600'}`}>
                 {status}
             </span>
         </div>

@@ -55,54 +55,54 @@ export default function OpsPage() {
     }
 
     return (
-        <div className="p-8 space-y-8 max-w-5xl mx-auto">
+        <div className="space-y-8 max-w-5xl mx-auto h-full flex flex-col">
             <header>
-                <h1 className="text-3xl font-bold text-white">Operations</h1>
-                <p className="text-slate-400">Track tasks and workflows.</p>
+                <h1 className="text-3xl font-bold text-slate-900">Operations</h1>
+                <p className="text-slate-500">Track tasks and workflows.</p>
             </header>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-                <div className="p-6 border-b border-slate-800 bg-slate-900/50">
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                <div className="p-6 border-b border-slate-200 bg-slate-50/50">
                     <form onSubmit={addTask} className="flex gap-4">
                         <input
                             type="text"
                             placeholder="Add a new task..."
-                            className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-blue-600 outline-none"
+                            className="flex-1 bg-white border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-blue-600 outline-none"
                             value={newTask}
                             onChange={(e) => setNewTask(e.target.value)}
                         />
-                        <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 rounded-lg transition-colors">
+                        <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 rounded-lg transition-colors shadow-sm">
                             Add Task
                         </button>
                     </form>
                 </div>
 
-                <div className="divide-y divide-slate-800">
+                <div className="divide-y divide-slate-100">
                     {loading ? (
-                        <div className="p-8 text-center text-slate-500">Loading tasks...</div>
+                        <div className="p-8 text-center text-slate-400">Loading tasks...</div>
                     ) : tasks.length === 0 ? (
                         <div className="p-12 text-center text-slate-500">
                             No tasks yet. Add one above!
                         </div>
                     ) : (
                         tasks.map(task => (
-                            <div key={task.id} className="p-4 flex items-center gap-4 hover:bg-slate-800/50 transition-colors group">
+                            <div key={task.id} className="p-4 flex items-center gap-4 hover:bg-slate-50 transition-colors group">
                                 <button
                                     onClick={() => updateStatus(task.id, task.status === 'done' ? 'todo' : 'done')}
                                     className={`w-6 h-6 rounded-full border flex items-center justify-center transition-all ${task.status === 'done'
-                                            ? 'bg-emerald-500/20 border-emerald-500 text-emerald-500'
-                                            : 'border-slate-600 text-transparent hover:border-slate-400'
+                                        ? 'bg-emerald-50 border-emerald-500 text-emerald-600'
+                                        : 'border-slate-300 text-transparent hover:border-slate-400'
                                         }`}
                                 >
                                     ✓
                                 </button>
-                                <span className={`flex-1 text-sm ${task.status === 'done' ? 'text-slate-500 line-through' : 'text-slate-200'}`}>
+                                <span className={`flex-1 text-sm ${task.status === 'done' ? 'text-slate-400 line-through' : 'text-slate-700'}`}>
                                     {task.title}
                                 </span>
                                 <select
                                     value={task.status}
                                     onChange={(e) => updateStatus(task.id, e.target.value)}
-                                    className="bg-transparent text-xs text-slate-500 border border-slate-800 rounded px-2 py-1 outline-none hover:border-slate-600 focus:border-blue-500"
+                                    className="bg-transparent text-xs text-slate-500 border border-slate-200 rounded px-2 py-1 outline-none hover:border-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                                 >
                                     <option value="todo">To Do</option>
                                     <option value="in_progress">In Progress</option>
