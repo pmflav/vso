@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
@@ -85,31 +86,18 @@ export default async function LandingPage() {
             </button>
           </div>
 
-          {/* Hero UI Mockup Placeholder */}
-          <div className="mt-20 relative mx-auto w-full max-w-4xl animate-in fade-in slide-in-from-bottom-12 duration-1200 delay-700">
-            <div className="aspect-[16/9] rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden relative group">
-              <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-white/50 z-10" />
-              {/* Abstract UI representation */}
-              <div className="absolute top-0 left-0 w-full h-12 border-b border-slate-100 bg-white flex items-center px-4 gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                  <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                  <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                </div>
-              </div>
-              <div className="p-12 pt-20 grid grid-cols-3 gap-6 opacity-40 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="h-32 rounded-xl bg-blue-50 border border-blue-100"></div>
-                <div className="h-32 rounded-xl bg-slate-50 border border-slate-100"></div>
-                <div className="h-32 rounded-xl bg-slate-50 border border-slate-100"></div>
-                <div className="col-span-2 h-48 rounded-xl bg-slate-50 border border-slate-100"></div>
-                <div className="h-48 rounded-xl bg-emerald-50 border border-emerald-100"></div>
-              </div>
-
-              <div className="absolute inset-0 flex items-center justify-center z-20">
-                <span className="px-4 py-2 bg-white/80 backdrop-blur border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-500">
-                  Interactive Dashboard Preview
-                </span>
-              </div>
+          {/* Hero UI Mockup */}
+          <div className="mt-20 relative mx-auto w-full max-w-5xl animate-in fade-in slide-in-from-bottom-12 duration-1200 delay-700">
+            <div className="rounded-2xl border border-slate-200 shadow-2xl overflow-hidden relative group bg-white">
+              <Image
+                src="/assets/hero_dashboard.png"
+                alt="CoreVantz Dashboard"
+                width={1920}
+                height={1080}
+                className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-700"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Floating Badges */}
@@ -210,12 +198,18 @@ export default async function LandingPage() {
 
           <div className="flex-1 flex justify-center">
             {/* Abstract Map Graphic */}
-            <div className="relative w-80 h-80">
+            <div className="relative w-96 h-96">
               <div className="absolute inset-0 bg-blue-600 rounded-full blur-[80px] opacity-20 animate-pulse"></div>
-              <div className="w-full h-full bg-slate-800/50 border border-slate-700 rounded-3xl backdrop-blur-sm flex items-center justify-center relative shadow-2xl">
-                <span className="text-9xl opacity-20 select-none">🇦🇺</span>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-slate-900 border border-slate-600 px-6 py-3 rounded-xl shadow-xl flex items-center gap-3">
+              <div className="w-full h-full bg-slate-800/50 border border-slate-700 rounded-3xl backdrop-blur-sm flex items-center justify-center relative shadow-2xl overflow-hidden group">
+                <Image
+                  src="/assets/sovereignty.png"
+                  alt="Australian Data Sovereignty"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="bg-slate-900/80 backdrop-blur border border-slate-600 px-6 py-3 rounded-xl shadow-xl flex items-center gap-3">
                     <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span className="font-mono text-sm">Sydney, AU (ap-southeast-2)</span>
                   </div>
@@ -256,7 +250,7 @@ export default async function LandingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400">
-          <p>&copy; 2024 CoreVantz Solutions Pty Ltd. All rights reserved. ABN 12 345 678 901.</p>
+          <p>&copy; 2024 CoreVantz Solutions Pty Ltd. All rights reserved. ABN 40 845 517 263.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <span>Made with ❤️ in Melbourne</span>
           </div>
